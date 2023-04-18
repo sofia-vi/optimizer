@@ -4,5 +4,6 @@ project(untitled1)
 set(CMAKE_CXX_STANDARD 20)
 find_package(nlohmann_json CONFIG REQUIRED)
 add_executable(untitled1 main.cpp)
+set(nlohmann-json_IMPLICIT_CONVERSIONS OFF)
 target_link_libraries(untitled1 nlohmann_json::nlohmann_json)
 

@@ -1,0 +1,40 @@
+{
+ "plan":{
+  "operator":"sort",
+  "physicalOperator":"sort",
+  "cardinality":4,
+  "operatorId":1,
+  "input":{
+   "operator":"groupby",
+   "physicalOperator":"groupby",
+   "cardinality":4,
+   "operatorId":2,
+   "input":{
+    "operator":"tablescan",
+    "physicalOperator":"tablescan",
+    "cardinality":5925027,
+    "operatorId":3,
+    "attributes":[{"name":"l_orderkey", "iu":{"iu":"l_orderkey", "type":{"type":"integer"}}}, {"name":"l_partkey", "iu":{"iu":"l_partkey", "type":{"type":"integer"}}}, {"name":"l_suppkey", "iu":{"iu":"l_suppkey", "type":{"type":"integer"}}}, {"name":"l_linenumber", "iu":{"iu":"l_linenumber", "type":{"type":"integer"}}}, {"name":"l_quantity", "iu":{"iu":"l_quantity", "type":{"type":"numeric", "precision":12, "scale":2}}}, {"name":"l_extendedprice", "iu":{"iu":"l_extendedprice", "type":{"type":"numeric", "precision":12, "scale":2}}}, {"name":"l_discount", "iu":{"iu":"l_discount", "type":{"type":"numeric", "precision":12, "scale":2}}}, {"name":"l_tax", "iu":{"iu":"l_tax", "type":{"type":"numeric", "precision":12, "scale":2}}}, {"name":"l_returnflag", "iu":{"iu":"l_returnflag", "type":{"type":"char1"}}}, {"name":"l_linestatus", "iu":{"iu":"l_linestatus", "type":{"type":"char1"}}}, {"name":"l_shipdate", "iu":{"iu":"l_shipdate", "type":{"type":"date"}}}, {"name":"l_commitdate", "iu":{"iu":"l_commitdate", "type":{"type":"date"}}}, {"name":"l_receiptdate", "iu":{"iu":"l_receiptdate", "type":{"type":"date"}}}, {"name":"l_shipinstruct", "iu":{"iu":"l_shipinstruct", "type":{"type":"char", "precision":25}}}, {"name":"l_shipmode", "iu":{"iu":"l_shipmode", "type":{"type":"char", "precision":10}}}, {"name":"l_comment", "iu":{"iu":"l_comment", "type":{"type":"text", "precision":44}}}],
+    "restrictions":[],
+    "residuals":[{"expression":"compare", "left":{"expression":"iuref", "iu":"l_shipdate"}, "right":{"expression":"const", "value":{"type":{"type":"date"}, "value":2451059}}, "direction":"<=", "collate":""}],
+    "tid":{"iu":"tid", "type":{"type":"bigint"}},
+    "tableoid":{"iu":"tableoid", "type":{"type":"integer"}},
+    "rowstate":{"iu":"rowstate", "type":{"type":"bigint"}},
+    "table":{"type":"table", "id":7},
+    "tableSize":6001215,
+    "tablename":"lineitem"
+   },
+   "values":[{"expression":"iuref", "iu":"l_returnflag"}, {"expression":"iuref", "iu":"l_linestatus"}, {"expression":"iuref", "iu":"l_quantity"}, {"expression":"iuref", "iu":"l_extendedprice"}, {"expression":"mul", "left":{"expression":"iuref", "iu":"l_extendedprice"}, "right":{"expression":"sub", "left":{"expression":"const", "value":{"type":{"type":"numeric", "precision":10}, "value":1}}, "right":{"expression":"iuref", "iu":"l_discount"}}}, {"expression":"mul", "left":{"expression":"mul", "left":{"expression":"iuref", "iu":"l_extendedprice"}, "right":{"expression":"sub", "left":{"expression":"const", "value":{"type":{"type":"numeric", "precision":10}, "value":1}}, "right":{"expression":"iuref", "iu":"l_discount"}}}, "right":{"expression":"cast", "input":{"expression":"add", "left":{"expression":"const", "value":{"type":{"type":"numeric", "precision":10}, "value":1}}, "right":{"expression":"iuref", "iu":"l_tax"}}, "type":{"type":"bignumeric", "precision":13, "scale":2}}}, {"expression":"iuref", "iu":"l_discount"}],
+   "key":[{"arg":0, "iu":{"iu":"l_returnflag20", "type":{"type":"char1"}}, "collate":""}, {"arg":1, "iu":{"iu":"l_linestatus21", "type":{"type":"char1"}}, "collate":""}],
+   "groupingmode":"regular",
+   "aggregates":[{"op":"sum", "arg":2, "collate":"", "iu":{"iu":"sum(l_quantity)", "type":{"type":"numeric", "precision":18, "scale":2}}}, {"op":"sum", "arg":3, "collate":"", "iu":{"iu":"sum(l_extendedprice)", "type":{"type":"numeric", "precision":18, "scale":2}}}, {"op":"sum", "arg":4, "collate":"", "iu":{"iu":"sum()", "type":{"type":"bignumeric", "precision":38, "scale":4}}}, {"op":"sum", "arg":5, "collate":"", "iu":{"iu":"sum()25", "type":{"type":"bignumeric", "precision":38, "scale":6}}}, {"op":"avg", "arg":2, "collate":"", "iu":{"iu":"avg(l_quantity)", "type":{"type":"bignumeric", "precision":31, "scale":21}}}, {"op":"avg", "arg":3, "collate":"", "iu":{"iu":"avg(l_extendedprice)", "type":{"type":"bignumeric", "precision":31, "scale":21}}}, {"op":"avg", "arg":6, "collate":"", "iu":{"iu":"avg(l_discount)", "type":{"type":"bignumeric", "precision":31, "scale":21}}}, {"op":"countstar", "iu":{"iu":"countstar(*)", "type":{"type":"bigint"}}}],
+   "orders":[],
+   "groupingsets":[]
+  },
+  "order":[{"value":{"expression":"iuref", "iu":"l_returnflag20"}, "collate":""}, {"value":{"expression":"iuref", "iu":"l_linestatus21"}, "collate":""}],
+  "duplicateFree":true
+ },
+ "output":[{"name":"l_returnflag", "iu":{"expression":"iuref", "iu":"l_returnflag20"}, "collate":""}, {"name":"l_linestatus", "iu":{"expression":"iuref", "iu":"l_linestatus21"}, "collate":""}, {"name":"sum_qty", "iu":{"expression":"iuref", "iu":"sum(l_quantity)"}, "collate":""}, {"name":"sum_base_price", "iu":{"expression":"iuref", "iu":"sum(l_extendedprice)"}, "collate":""}, {"name":"sum_disc_price", "iu":{"expression":"iuref", "iu":"sum()"}, "collate":""}, {"name":"sum_charge", "iu":{"expression":"iuref", "iu":"sum()25"}, "collate":""}, {"name":"avg_qty", "iu":{"expression":"iuref", "iu":"avg(l_quantity)"}, "collate":""}, {"name":"avg_price", "iu":{"expression":"iuref", "iu":"avg(l_extendedprice)"}, "collate":""}, {"name":"avg_disc", "iu":{"expression":"iuref", "iu":"avg(l_discount)"}, "collate":""}, {"name":"count_order", "iu":{"expression":"iuref", "iu":"countstar(*)"}, "collate":""}],
+ "type":"select",
+ "query":true
+}
